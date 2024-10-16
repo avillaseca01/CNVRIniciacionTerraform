@@ -6,7 +6,7 @@ resource "openstack_networking_network_v2" "net1" {
 resource "openstack_networking_subnet_v2" "subnet1" {
   name = "subnet1"
   network_id = openstack_networking_network_v2.net1.id
-  cidr = "10.1.10.0/24 "
+  cidr = "10.1.10.0/24"
   ip_version = 4
   dns_nameservers = ["8.8.8.8"]
   gateway_ip = "10.1.10.1"
