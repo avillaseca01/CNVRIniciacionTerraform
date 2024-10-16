@@ -17,29 +17,42 @@ data "openstack_networking_network_v2" "net2" {
   name = "net2"
 }
 
+# Resource to execute the script
+resource "null_resource" "create_keypairs" {
+  provisioner "local-exec" {
+    command = "sh ./script_keys.sh"
+  }
+}
+
 # Data sources to get the existing keypairs information
 data "openstack_compute_keypair_v2" "vm1_keypair" {
   name = "vm1"
+  depends_on = [null_resource.create_keypairs]
 }
 
 data "openstack_compute_keypair_v2" "vm2_keypair" {
   name = "vm2"
+  depends_on = [null_resource.create_keypairs]
 }
 
 data "openstack_compute_keypair_v2" "vm3_keypair" {
   name = "vm3"
+  depends_on = [null_resource.create_keypairs]
 }
 
 data "openstack_compute_keypair_v2" "vm4_keypair" {
   name = "vm4"
+  depends_on = [null_resource.create_keypairs]
 }
 
 data "openstack_compute_keypair_v2" "vm5_keypair" {
   name = "vm5"
+  depends_on = [null_resource.create_keypairs]
 }
 
 data "openstack_compute_keypair_v2" "vm6_keypair" {
   name = "vm6"
+  depends_on = [null_resource.create_keypairs]
 }
 
 # Resource to create VM1 in net1
