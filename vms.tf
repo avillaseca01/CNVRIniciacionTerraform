@@ -22,13 +22,14 @@ resource "null_resource" "create_keypairs" {
   provisioner "local-exec" {
     # Exportar las mismas variables que tienes en openstack-provider.tf como variables de entorno
     environment = {
-      OS_AUTH_URL            = "http://192.168.0.10:5000/v3"
-      OS_USERNAME            = "admin"
-      OS_PASSWORD            = "xxxx"
-      OS_PROJECT_NAME        = "admin"
-      OS_USER_DOMAIN_NAME    = "Default"
-      OS_PROJECT_DOMAIN_NAME = "Default"
-    }
+      user_name = "admin"
+      tenant_name = "admin"
+      password = "xxxx"
+      user_domain_name = "Default"
+      project_domain_name = "Default"
+      auth_url = "http://controller:5000/v3"
+      region = "RegionOne"
+      }
 
     command = "sh ./script_keys.sh"
   }
