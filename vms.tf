@@ -20,6 +20,16 @@ data "openstack_networking_network_v2" "net2" {
 # Resource to execute the script
 resource "null_resource" "create_keypairs" {
   provisioner "local-exec" {
+    # Exportar las mismas variables que tienes en openstack-provider.tf como variables de entorno
+    environment = {
+      OS_AUTH_URL            = "http://192.168.0.10:5000/v3"
+      OS_USERNAME            = "admin"
+      OS_PASSWORD            = "xxxx"
+      OS_PROJECT_NAME        = "admin"
+      OS_USER_DOMAIN_NAME    = "Default"
+      OS_PROJECT_DOMAIN_NAME = "Default"
+    }
+
     command = "sh ./script_keys.sh"
   }
 }
