@@ -1,8 +1,4 @@
 #Data
-data "openstack_networking_router_v2" "r0" {
-    name = "r0"
-}
-
 data "openstack_networking_network_v2" "ExtNet" {
     name = "ExtNet"
 }
@@ -16,7 +12,7 @@ data "openstack_networking_subnet_v2" "subnet2"{
 }
 
 resource "openstack_networking_router_v2" "r0"{
-    name = data.openstack_networking_router_v2.r0.name
+    name = "r0"
     external_network_id = data.openstack_networking_network_v2.ExtNet.id
 }
 
