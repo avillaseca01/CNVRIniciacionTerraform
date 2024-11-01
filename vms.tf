@@ -38,8 +38,29 @@ data "openstack_compute_keypair_v2" "keypairvm6" {
     name = "vm6"
 }
 
-resource "openstack_networking_floatingip_v2" "public_ip" {
-  pool = "ExtNet"  
+# Crear 6 IPs flotantes
+resource "openstack_networking_floatingip_v2" "public_ip_vm1" {
+  pool = "ExtNet"
+}
+
+resource "openstack_networking_floatingip_v2" "public_ip_vm2" {
+  pool = "ExtNet"
+}
+
+resource "openstack_networking_floatingip_v2" "public_ip_vm3" {
+  pool = "ExtNet"
+}
+
+resource "openstack_networking_floatingip_v2" "public_ip_vm4" {
+  pool = "ExtNet"
+}
+
+resource "openstack_networking_floatingip_v2" "public_ip_vm5" {
+  pool = "ExtNet"
+}
+
+resource "openstack_networking_floatingip_v2" "public_ip_vm6" {
+  pool = "ExtNet"
 }
 
 # Resource to create a new VM
@@ -61,7 +82,7 @@ resource "openstack_compute_instance_v2" "vm1" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm1" {
-    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    floating_ip = openstack_networking_floatingip_v2.public_ip_vm1.address
     instance_id = openstack_compute_instance_v2.vm1.id
 }
 
@@ -84,7 +105,7 @@ resource "openstack_compute_instance_v2" "vm2" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm2" {
-    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    floating_ip = openstack_networking_floatingip_v2.public_ip_vm2.address
     instance_id = openstack_compute_instance_v2.vm2.id
 }
 
@@ -107,7 +128,7 @@ resource "openstack_compute_instance_v2" "vm3" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm3" {
-    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    floating_ip = openstack_networking_floatingip_v2.public_ip_vm3.address
     instance_id = openstack_compute_instance_v2.vm3.id
 }
 
@@ -130,7 +151,7 @@ resource "openstack_compute_instance_v2" "vm4" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm4" {
-    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    floating_ip = openstack_networking_floatingip_v2.public_ip_vm4.address
     instance_id = openstack_compute_instance_v2.vm4.id
 }
 
@@ -153,7 +174,7 @@ resource "openstack_compute_instance_v2" "vm5" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm5" {
-    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    floating_ip = openstack_networking_floatingip_v2.public_ip_vm5.address
     instance_id = openstack_compute_instance_v2.vm5.id
 }
 
@@ -176,6 +197,6 @@ resource "openstack_compute_instance_v2" "vm6" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm6" {
-    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    floating_ip = openstack_networking_floatingip_v2.public_ip_vm6.address
     instance_id = openstack_compute_instance_v2.vm6.id
 }
