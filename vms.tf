@@ -42,6 +42,10 @@ data "openstack_compute_keypair_v2" "keypairvm6" {
     name = "vm6"
 }
 
+resource "openstack_networking_floatingip_v2" "public_ip" {
+  pool = "ExtNet"  
+}
+
 # Resource to create a new VM
 resource "openstack_compute_instance_v2" "vm1" {
     name       = "vm1"
@@ -58,6 +62,11 @@ resource "openstack_compute_instance_v2" "vm1" {
         #!/bin/bash
         echo "VM lauched by Terraform > info.txt
     EOT
+}
+
+resource "openstack_compute_floatingip_associate_v2" "fip_assocvm1" {
+  floating_ip = openstack_networking_floatingip_v2.public_ip.address
+  instance_id = openstack_compute_instance_v2.vm1.id
 }
 
 # Resource to create a new VM
@@ -78,6 +87,11 @@ resource "openstack_compute_instance_v2" "vm2" {
     EOT
 }
 
+resource "openstack_compute_floatingip_associate_v2" "fip_assocvm2" {
+  floating_ip = openstack_networking_floatingip_v2.public_ip.address
+  instance_id = openstack_compute_instance_v2.vm2.id
+}
+
 # Resource to create a new VM
 resource "openstack_compute_instance_v2" "vm3" {
     name       = "vm3"
@@ -94,6 +108,11 @@ resource "openstack_compute_instance_v2" "vm3" {
         #!/bin/bash
         echo "VM lauched by Terraform > info.txt
     EOT
+}
+
+resource "openstack_compute_floatingip_associate_v2" "fip_assocvm3" {
+  floating_ip = openstack_networking_floatingip_v2.public_ip.address
+  instance_id = openstack_compute_instance_v2.vm3.id
 }
 
 # Resource to create a new VM
@@ -114,6 +133,11 @@ resource "openstack_compute_instance_v2" "vm4" {
     EOT
 }
 
+resource "openstack_compute_floatingip_associate_v2" "fip_assocvm4" {
+  floating_ip = openstack_networking_floatingip_v2.public_ip.address
+  instance_id = openstack_compute_instance_v2.vm4.id
+}
+
 # Resource to create a new VM
 resource "openstack_compute_instance_v2" "vm5" {
     name       = "vm5"
@@ -132,6 +156,11 @@ resource "openstack_compute_instance_v2" "vm5" {
     EOT
 }
 
+resource "openstack_compute_floatingip_associate_v2" "fip_assocvm5" {
+  floating_ip = openstack_networking_floatingip_v2.public_ip.address
+  instance_id = openstack_compute_instance_v2.vm5.id
+}
+
 # Resource to create a new VM
 resource "openstack_compute_instance_v2" "vm6" {
     name       = "vm6"
@@ -148,4 +177,9 @@ resource "openstack_compute_instance_v2" "vm6" {
         #!/bin/bash
         echo "VM lauched by Terraform > info.txt
     EOT
+}
+
+resource "openstack_compute_floatingip_associate_v2" "fip_assocvm6" {
+  floating_ip = openstack_networking_floatingip_v2.public_ip.address
+  instance_id = openstack_compute_instance_v2.vm6.id
 }
