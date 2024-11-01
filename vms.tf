@@ -17,27 +17,23 @@ data "openstack_networking_network_v2" "net1" {
 data "openstack_networking_network_v2" "net2" {
     name = "net2"
 }
+
 # Data keypair
 data "openstack_compute_keypair_v2" "keypairvm1" {
     name = "vm1"
 }
-# Data keypair
 data "openstack_compute_keypair_v2" "keypairvm2" {
     name = "vm2"
 }
-# Data keypair
 data "openstack_compute_keypair_v2" "keypairvm3" {
     name = "vm3"
 }
-# Data keypair
 data "openstack_compute_keypair_v2" "keypairvm4" {
     name = "vm4"
 }
-# Data keypair
 data "openstack_compute_keypair_v2" "keypairvm5" {
     name = "vm5"
 }
-# Data keypair
 data "openstack_compute_keypair_v2" "keypairvm6" {
     name = "vm6"
 }
@@ -60,13 +56,13 @@ resource "openstack_compute_instance_v2" "vm1" {
 
     user_data = <<-EOT
         #!/bin/bash
-        echo "VM lauched by Terraform > info.txt
+        echo "VM launched by Terraform" > info.txt
     EOT
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm1" {
-  floating_ip = openstack_networking_floatingip_v2.public_ip.address
-  instance_id = openstack_compute_instance_v2.vm1.id
+    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    instance_id = openstack_compute_instance_v2.vm1.id
 }
 
 # Resource to create a new VM
@@ -88,8 +84,8 @@ resource "openstack_compute_instance_v2" "vm2" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm2" {
-  floating_ip = openstack_networking_floatingip_v2.public_ip.address
-  instance_id = openstack_compute_instance_v2.vm2.id
+    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    instance_id = openstack_compute_instance_v2.vm2.id
 }
 
 # Resource to create a new VM
@@ -111,8 +107,8 @@ resource "openstack_compute_instance_v2" "vm3" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm3" {
-  floating_ip = openstack_networking_floatingip_v2.public_ip.address
-  instance_id = openstack_compute_instance_v2.vm3.id
+    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    instance_id = openstack_compute_instance_v2.vm3.id
 }
 
 # Resource to create a new VM
@@ -134,8 +130,8 @@ resource "openstack_compute_instance_v2" "vm4" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm4" {
-  floating_ip = openstack_networking_floatingip_v2.public_ip.address
-  instance_id = openstack_compute_instance_v2.vm4.id
+    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    instance_id = openstack_compute_instance_v2.vm4.id
 }
 
 # Resource to create a new VM
@@ -157,8 +153,8 @@ resource "openstack_compute_instance_v2" "vm5" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm5" {
-  floating_ip = openstack_networking_floatingip_v2.public_ip.address
-  instance_id = openstack_compute_instance_v2.vm5.id
+    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    instance_id = openstack_compute_instance_v2.vm5.id
 }
 
 # Resource to create a new VM
@@ -180,6 +176,6 @@ resource "openstack_compute_instance_v2" "vm6" {
 }
 
 resource "openstack_compute_floatingip_associate_v2" "fip_assocvm6" {
-  floating_ip = openstack_networking_floatingip_v2.public_ip.address
-  instance_id = openstack_compute_instance_v2.vm6.id
+    floating_ip = openstack_networking_floatingip_v2.public_ip.address
+    instance_id = openstack_compute_instance_v2.vm6.id
 }
